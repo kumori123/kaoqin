@@ -24,7 +24,7 @@ class timebasevisitor(timeVisitor):
 
 
 
-def main(time_str):
+def analyze_time(time_str):
     input = InputStream(time_str)
     lexer = timeLexer(input)
     stream = CommonTokenStream(lexer)
@@ -36,8 +36,8 @@ def main(time_str):
     print(visitor.arr)
     return visitor.arr
 
-min1,sec1 = main("10:23")
-min2,sec2 = main("21:43")
+min1,sec1 = analyze_time("10:23")
+min2,sec2 = analyze_time("21:43")
 
 diff = (min2-min1)*60+(sec2-sec1)
 print(diff)

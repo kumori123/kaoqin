@@ -7,12 +7,13 @@
 <body>
     <h2>{{ title }}</h2>
     <button type="button" disabled="disabled" >打开考勤表</button>
-    <div><p>{{ Filepath }}</p></div>
-    <!-- <form enctype='application/json' method="post">
-        <p type="text" name="filepath" >{{ Filepath }}</p>
-        <a href="{{ url_for('show_res_address')}}"> <button type="button" >分析并导出excel</button></a>
-    </form> -->
-    <a href="{{ url_for('show_res_address')}}"> <button type="button" >分析并导出excel</button></a>
+    <!-- <div><p>{{ Filepath }}</p></div> -->
+    <form enctype='application/json' method="post" action="{{ url_for('show_res_address')}}">
+        <textarea readonly=readonly style="border:none;width:400px;height:50px;" type="text" name="filepath" >{{ Filepath }}</textarea><br>
+        <!-- <a href="{{ url_for('show_res_address')}}"> <button type="button" >分析并导出excel</button></a> -->
+        <input type="submit" value="分析并导出excel, form">
+    </form>
+    <!-- <a href="{{ url_for('show_res_address')}}"> <button type="button" >分析并导出excel</button></a> -->
 </body>
 </html>
 
