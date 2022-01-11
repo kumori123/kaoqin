@@ -3,10 +3,21 @@
 <link href="react.min.js">
 <head>
     <meta charset="utf-8">
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
     <title>{{ title }}</title>
 </head>
 
 <body>
+    <!-- <div id="t"></div>
+    <script text="text/babel">
+        ReactDOM.render(
+            <h2>hahaha</h2>,
+            document.getElementById('t')
+        );
+    </script> -->
+
     <h2>{{ title }}</h2>
     <a href="{{ url_for('show_obj_address')}}"> <button type="button" >打开考勤表</button></a>
 

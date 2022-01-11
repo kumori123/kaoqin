@@ -16,15 +16,22 @@ def main():
 @app.route('/show_obj_address')
 def show_obj_address():
     title = "Ready to work"
+    
     root = tk.Tk()
+    print('1')
     root.withdraw()
+    print('2')
     Filepath = filedialog.askopenfilename()
+    print('3')
+    if Filepath=="":
+        pass
+
     return render_template('show_obj_address.html',title=title,Filepath = Filepath)
     
 @app.route('/show_res_address',methods=['GET','POST'])
 def show_res_address():
-    print(request.form)
-    Filepath = request.form.get("filepath")
+    print(request.json)
+    Filepath = request.json['filepath']
     title = "Finished"
     dir_stop = 0
     filename_stop = 0
@@ -69,11 +76,10 @@ def show_res_address():
         data_res.loc[len(data_res)] = arr
 
     data_res.to_excel(Filedir+"/"+Filename+"_result.xls")
-
-
-        
+       
     Respath = Filedir+"/"+Filename+"_result.xls"
-    return render_template('show_res_address.html',title=title,Filepath = Filepath,Respath = Respath)
+    # return render_template('show_res_address.html',title=title,Filepath = Filepath,Respath = Respath)
+    return Respath
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

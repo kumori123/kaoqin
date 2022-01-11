@@ -4,16 +4,50 @@
     <meta charset="utf-8">
     <title>{{ title }}</title>
 </head>
+<script>
+    function createXhr(){
+        var xhr = null;
+        if(window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();
+        }
+        else if(window.ActiveXObject){
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        return xhr;
+    }
+
+    function reg()
+    {
+        var filepath = document.getElementById('file_path').innerHTML;
+        console.log("aaa")
+        console.log(document.getElementById('file_path'));
+        var xhr = createXhr();
+        xhr.open('POST','/show_res_address',true)
+        xhr.setRequestHeader('Content-Type','application/json;charset=UTF-8')
+        xhr.onreadystatechange = function()
+        {
+            if (this.status == 200)
+            {
+                var Respath = this.responseText;
+                document.getElementById("res_path").innerHTML = Respath;
+                document.getElementById("analyze_but").disabled = true;
+            }
+        }
+        var content = JSON.stringify({filepath:filepath});
+        xhr.send(content);
+        return false;
+    }
+</script>
+
+
+
 <body>
     <h2>{{ title }}</h2>
-    <button type="button" disabled="disabled" >打开考勤表</button>
-    <!-- <div><p>{{ Filepath }}</p></div> -->
-    <form enctype='application/json' method="post" action="{{ url_for('show_res_address')}}">
-        <textarea readonly=readonly style="border:none;width:400px;height:50px;" type="text" name="filepath" >{{ Filepath }}</textarea><br>
-        <!-- <a href="{{ url_for('show_res_address')}}"> <button type="button" >分析并导出excel</button></a> -->
-        <input type="submit" value="分析并导出excel, form">
-    </form>
-    <!-- <a href="{{ url_for('show_res_address')}}"> <button type="button" >分析并导出excel</button></a> -->
+    <button id="open_but" type="button" disabled="disabled" >打开考勤表</button>
+    <p id="file_path">{{ Filepath }}</p>
+    <button id="analyze_but" onclick="reg()">reg</button>
+
+    <div><p id="res_path"></p></div>
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-# Generated from .\antlr\time.g4 by ANTLR 4.9.3
+# Generated from time.g4 by ANTLR 4.9.3
 from antlr4 import *
 from io import StringIO
 import sys
